@@ -18,6 +18,7 @@ import static org.zwobble.couscous.ast.Operations.boxInt;
 import static org.zwobble.couscous.ast.Operations.integerSubtract;
 import static org.zwobble.couscous.types.Types.erasure;
 import static org.zwobble.couscous.util.Casts.tryCast;
+import static org.zwobble.couscous.util.ExtraIterables.only;
 import static org.zwobble.couscous.util.ExtraLists.list;
 
 public class CsharpPrimitiveMethods {
@@ -171,6 +172,15 @@ public class CsharpPrimitiveMethods {
                     Types.STRING
                 ),
                 Types.STRING
+            ))
+            .put("valueOf", new PrimitiveStaticMethod(
+                arguments -> methodCall(
+                    only(arguments),
+                    "ToString", 
+                    list(), 
+                    ScalarType.topLevel("string")
+                ),
+                ScalarType.topLevel("string")
             ))
 
             .build();
